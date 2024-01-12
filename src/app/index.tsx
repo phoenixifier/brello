@@ -3,7 +3,7 @@ import "./styles/index.css";
 export function App() {
   return (
     <>
-      <h1>Brello</h1>
+      <h1 className="font-bold text-amber-400">Brello</h1>
     </>
   );
 }

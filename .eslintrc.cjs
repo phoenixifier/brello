@@ -6,11 +6,12 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "plugin:react-hooks/recommended",
     "plugin:jsx-a11y/recommended",
+    "plugin:tailwindcss/recommended",
     "prettier",
   ],
   ignorePatterns: ["dist", ".eslintrc.cjs"],
   parser: "@typescript-eslint/parser",
-  plugins: ["react-refresh", "jsx-a11y", "prettier"],
+  plugins: ["react-refresh", "jsx-a11y", "prettier", "tailwindcss"],
   rules: {
     "react-refresh/only-export-components": [
       "warn",
