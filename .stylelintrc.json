@@ -5,6 +5,18 @@
     "stylelint-prettier/recommended"
   ],
   "rules": {
-    "media-feature-range-notation": "prefix"
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": [
+          "tailwind",
+          "apply",
+          "variants",
+          "responsive",
+          "screen"
+        ]
+      }
+    ],
+    "no-descending-specificity": null
   }
 }
