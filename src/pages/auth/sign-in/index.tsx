@@ -4,15 +4,14 @@ import {
   emailChanged,
   $email,
   formSubmitted,
+  $pending,
 } from "@/pages/auth/sign-in/model.ts";
 import { useUnit } from "effector-react";
 
 const SignInPage: React.FC = () => {
-  const [email, handleEmail, handleSubmit] = useUnit([
-    $email,
-    emailChanged,
-    formSubmitted,
-  ]);
+  const [email, pending] = useUnit([$email, $pending]);
+  const [handleEmail, handleSubmit] = useUnit([emailChanged, formSubmitted]);
+
   return (
     <Layout>
       <form
@@ -34,10 +33,11 @@ const SignInPage: React.FC = () => {
             name="email"
             value={email}
             onChange={(e) => handleEmail(e.target.value)}
+            disabled={pending}
           />
         </div>
         <div className="flex w-full flex-col gap-2 xl:w-1/2">
-          <button className="flex justify-center rounded-lg bg-[#155EEF] px-4 py-2.5 font-semibold text-white">
+          <button className="flex justify-center rounded-lg bg-[#620093] px-4 py-2.5 font-semibold text-white">
             Get started
           </button>
           <button className="flex items-center justify-center gap-2 rounded-lg border border-gray-300 px-4 py-2.5">
