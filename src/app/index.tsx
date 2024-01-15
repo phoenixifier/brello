@@ -1,11 +1,11 @@
 import "./styles/index.css";
-import Login from "@/app/components/Login.tsx";
+import SignInPage from "@/pages/auth/sign-in/index.tsx";
 
 export function App() {
   return (
     <>
       <div className="flex h-screen">
-        <Login />
+        <SignInPage />
         <img
           src="/public/Geometric shapes.svg"
           className="hidden xl:flex"

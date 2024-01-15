@@ -4,7 +4,7 @@ import Footer from "@/app/components/Footer.tsx";
 
 const Layout: React.FC<{ children: React.ReactElement }> = ({ children }) => {
   return (
-    <div className="min-h-screen container mx-auto flex flex-col">
+    <div className="container mx-auto flex min-h-screen flex-col">
       <Header />
       <div className="flex-1" />
       {children}
