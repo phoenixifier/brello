@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "@/app/components/Header.tsx";
-import Footer from "@/app/components/Footer.tsx";
+import Header from "@/pages/auth/sign-in/components/header.tsx";
+import Footer from "@/pages/auth/sign-in/components/footer.tsx";
 
 const Layout: React.FC<{ children: React.ReactElement }> = ({ children }) => {
   return (

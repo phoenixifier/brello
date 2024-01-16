@@ -1,16 +1,25 @@
 import React from "react";
-import Layout from "@/app/components/Layout.tsx";
+import Layout from "@/pages/auth/sign-in/components/layout.tsx";
 import {
   emailChanged,
   $email,
   formSubmitted,
   $pending,
+  $error,
+  SignInError,
 } from "@/pages/auth/sign-in/model.ts";
 import { useUnit } from "effector-react";
+import Button from "@/shared/ui/button";
+import Input from "@/shared/ui/input";
 
 const SignInPage: React.FC = () => {
-  const [email, pending] = useUnit([$email, $pending]);
+  const [email, pending, error] = useUnit([$email, $pending, $error]);
   const [handleEmail, handleSubmit] = useUnit([emailChanged, formSubmitted]);
+
+  const errorText: { [Key in SignInError]: React.ReactNode } = {
+    InvalidEmail: "Must be a valid email",
+    UnknownError: "Oops, something went wrong",
+  };
 
   return (
     <Layout>
@@ -27,23 +36,22 @@ const SignInPage: React.FC = () => {
         </div>
         <div className="flex w-full flex-col gap-1 xl:w-1/2">
           <p className="text-xs">Email</p>
-          <input
-            className="rounded-lg border border-gray-300 px-3.5 py-2 outline-none"
+          <Input
+            className="border-gray-300"
             placeholder="Enter your email"
             name="email"
             value={email}
             onChange={(e) => handleEmail(e.target.value)}
             disabled={pending}
+            error={error ? errorText[error] : null}
           />
         </div>
         <div className="flex w-full flex-col gap-2 xl:w-1/2">
-          <button className="flex justify-center rounded-lg bg-[#620093] px-4 py-2.5 font-semibold text-white">
-            Get started
-          </button>
-          <button className="flex items-center justify-center gap-2 rounded-lg border border-gray-300 px-4 py-2.5">
+          <Button className="bg-[#620093] text-white">Get started</Button>
+          <Button className="gap-2 border border-gray-300">
             <img src="/public/google.svg" alt="Icon" />
             <p className="font-semibold">Sign up with Google</p>
-          </button>
+          </Button>
         </div>
       </form>
     </Layout>
