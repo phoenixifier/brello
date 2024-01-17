@@ -4,7 +4,7 @@ import Layout from "@/pages/auth/sign-in/components/layout.tsx";
 const LoggedInPage: React.FC = () => {
   return (
     <Layout>
-      <div className="flex flex-col items-center gap-3">
+      <div className="flex flex-col gap-3">
         <span className="flex">
           <div className="flex items-center justify-center rounded-full bg-indigo-200/50 p-3.5">
             <div className="flex items-center justify-center rounded-full bg-indigo-400/30 p-4">

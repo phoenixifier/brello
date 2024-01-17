@@ -24,17 +24,17 @@ const SignInPage: React.FC = () => {
   return (
     <Layout>
       <form
-        className="flex flex-col items-center gap-5 px-8"
+        className="flex w-full flex-col gap-5 px-8 2xl:w-1/2"
         onSubmit={(e) => {
           e.preventDefault();
           handleSubmit();
         }}
       >
-        <div className="flex w-full flex-col gap-1 xl:w-1/2">
+        <div className="flex w-full flex-col gap-1">
           <h1 className="text-2xl font-semibold">Sign in</h1>
           <p className="text-gray-600">Start your 30-day free trial.</p>
         </div>
-        <div className="flex w-full flex-col gap-1 xl:w-1/2">
+        <div className="flex w-full flex-col gap-1">
           <p className="text-xs">Email</p>
           <Input
             className="border-gray-300"
@@ -46,7 +46,7 @@ const SignInPage: React.FC = () => {
             error={error ? errorText[error] : null}
           />
         </div>
-        <div className="flex w-full flex-col gap-2 xl:w-1/2">
+        <div className="flex w-full flex-col gap-2">
           <Button className="bg-[#620093] text-white">Get started</Button>
           <Button className="gap-2 border border-gray-300">
             <img src="/public/google.svg" alt="Icon" />

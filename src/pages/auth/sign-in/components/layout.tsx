@@ -19,7 +19,7 @@ const Layout: React.FC<{ children: React.ReactElement }> = ({ children }) => {
       <div className="container mx-auto flex min-h-screen flex-col">
         <Header />
         <div className="flex-1" />
-        {children}
+        <div className="flex justify-center">{children}</div>
         <div className="flex-1" />
         <Footer />
       </div>
