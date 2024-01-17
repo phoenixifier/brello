@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "@/pages/auth/sign-in/components/header.tsx";
-import Footer from "@/pages/auth/sign-in/components/footer.tsx";
+import Header from "@/pages/auth/sign-in/components/Header.tsx";
+import Footer from "@/pages/auth/sign-in/components/Footer.tsx";
 import { useScreenSize } from "@/shared/screen-context.tsx";
 
 const Layout: React.FC<{ children: React.ReactElement }> = ({ children }) => {

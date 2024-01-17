@@ -1,61 +1,13 @@
 import React from "react";
-import Layout from "@/pages/auth/sign-in/components/layout.tsx";
-import {
-  emailChanged,
-  $email,
-  formSubmitted,
-  $pending,
-  $error,
-  SignInError,
-} from "@/pages/auth/sign-in/model.ts";
+import Layout from "@/pages/auth/sign-in/components/Layout.tsx";
 import { useUnit } from "effector-react";
-import Button from "@/shared/ui/button";
-import Input from "@/shared/ui/input";
+import { $finished } from "@/pages/auth/sign-in/model.ts";
+import LoginFinished from "@/pages/auth/sign-in/components/LoginFinished.tsx";
+import Login from "@/pages/auth/sign-in/components/Login.tsx";
 
 const SignInPage: React.FC = () => {
-  const [email, pending, error] = useUnit([$email, $pending, $error]);
-  const [handleEmail, handleSubmit] = useUnit([emailChanged, formSubmitted]);
-
-  const errorText: { [Key in SignInError]: React.ReactNode } = {
-    InvalidEmail: "Must be a valid email",
-    UnknownError: "Oops, something went wrong",
-  };
-
-  return (
-    <Layout>
-      <form
-        className="flex w-full flex-col gap-5 px-8 2xl:w-1/2"
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleSubmit();
-        }}
-      >
-        <div className="flex w-full flex-col gap-1">
-          <h1 className="text-2xl font-semibold">Sign in</h1>
-          <p className="text-gray-600">Start your 30-day free trial.</p>
-        </div>
-        <div className="flex w-full flex-col gap-1">
-          <p className="text-xs">Email</p>
-          <Input
-            className="border-gray-300"
-            placeholder="Enter your email"
-            name="email"
-            value={email}
-            onChange={(e) => handleEmail(e.target.value)}
-            disabled={pending}
-            error={error ? errorText[error] : null}
-          />
-        </div>
-        <div className="flex w-full flex-col gap-2">
-          <Button className="bg-[#620093] text-white">Get started</Button>
-          <Button className="gap-2 border border-gray-300">
-            <img src="/public/google.svg" alt="Icon" />
-            <p className="font-semibold">Sign up with Google</p>
-          </Button>
-        </div>
-      </form>
-    </Layout>
-  );
+  const finished = useUnit($finished);
+  return <Layout>{finished ? <LoginFinished /> : <Login />}</Layout>;
 };
 
 export default SignInPage;
