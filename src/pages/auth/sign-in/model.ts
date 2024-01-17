@@ -48,7 +48,7 @@ sample({
   target: [$finished.reinit, $email.reinit, $error.reinit],
 });
 
-/* In case email is invalid (2.1) */
+/* In case email is invalid */
 sample({
   clock: formSubmitted,
   filter: not(isEmailValid),
@@ -56,7 +56,7 @@ sample({
   target: $error,
 });
 
-/* In case of error with the request (3.1) */
+/* In case of error with the request */
 $error.on(signInFx.failData, (_, error) => {
   if (error.status === 429) {
     return "RateLimit";

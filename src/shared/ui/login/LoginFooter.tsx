@@ -1,6 +1,6 @@
 import React from "react";
 
-const Footer: React.FC = () => {
+const LoginFooter: React.FC = () => {
   return (
     <div className="flex items-center justify-between p-8">
       <p className="text-gray-600">© Brello 2024</p>
@@ -12,4 +12,4 @@ const Footer: React.FC = () => {
   );
 };
 
-export default Footer;
+export default LoginFooter;
