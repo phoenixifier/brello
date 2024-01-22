@@ -20,18 +20,6 @@ const isEmailValid = $email.map(
   (email) => email.includes("@") && email.includes(".") && email.length > 5,
 );
 
-/**
- * 1. Enter email
- * 2. Validate email
- * 3. Send email (request to server)
- * 4. Finish screen
- *
- * 2.1 Email invalid -> 1
- *
- * 3.1 Email sent -> 1
- * 3.2 Failed to send email
- **/
-
 /*When login is successful */
 sample({
   clock: formSubmitted,

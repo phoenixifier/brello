@@ -1,6 +1,7 @@
 {
   "presets": [
-    "patronum/babel-preset"
+    "patronum/babel-preset",
+    "atomic-router/babel-preset"
   ],
   "plugins": [
     [
