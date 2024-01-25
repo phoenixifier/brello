@@ -10,7 +10,7 @@ export const routes = {
   },
 };
 
-export const pageNotFound = createRoute();
+export const pageNotFoundRoute = createRoute();
 
 export const routesMap: UnmappedRouteObject<object>[] = [
   {
