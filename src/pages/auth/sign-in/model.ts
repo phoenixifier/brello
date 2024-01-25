@@ -1,6 +1,9 @@
 import { attach, createEvent, createStore, sample } from "effector";
 import { api } from "@/shared/api";
 import { not } from "patronum";
+import { routes } from "@/shared/routing/routes.ts";
+
+export const currentRoute = routes.auth.signIn;
 
 export type SignInError = "InvalidEmail" | "RateLimit" | "UnknownError";
 const signInFx = attach({ effect: api.auth.signInWithEmailFx });

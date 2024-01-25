@@ -1,10 +1,6 @@
 import "./styles/index.css";
-import UserIntroPage from "@/pages/onboarding/user-intro/page.tsx";
+import { Pages } from "@/pages";
 
 export function App() {
-  return (
-    <>
-      <UserIntroPage />
-    </>
-  );
+  return <Pages />;
 }
