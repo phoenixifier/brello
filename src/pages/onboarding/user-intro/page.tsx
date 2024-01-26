@@ -1,6 +1,8 @@
 import React from "react";
 import Input from "@/shared/ui/input";
 import Button from "@/shared/ui/button";
+import { Link } from "atomic-router-react";
+import { routes } from "@/shared/routing/routes.ts";
 
 const UserIntroPage: React.FC = () => {
   return (
@@ -19,7 +21,9 @@ const UserIntroPage: React.FC = () => {
               <p className="text-[#475467]">
                 You can do this later on Profile page.{" "}
               </p>
-              <button className="text-[#004EEB]">Skip</button>
+              <Link to={routes.home} className="text-[#004EEB]">
+                Skip
+              </Link>
             </div>
           </div>
           <form

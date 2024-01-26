@@ -15,7 +15,7 @@ const LoginLayout: React.FC<{ children: React.ReactElement }> = ({
             ? "/geometric-mobile.svg"
             : "/geometric-desktop.svg"
         }
-        className="-order-1 mb-4 h-16 w-full bg-center bg-no-repeat 2xl:order-1 2xl:mb-0 2xl:h-full"
+        className="-order-1 mb-4 h-16 w-full bg-center bg-no-repeat object-cover 2xl:order-1 2xl:mb-0 2xl:h-full"
         alt="Background"
       />
       <div className="container mx-auto flex min-h-screen flex-col">
