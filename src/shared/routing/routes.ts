@@ -4,6 +4,7 @@ export const routes = {
   home: createRoute(),
   auth: {
     signIn: createRoute(),
+    finished: createRoute(),
   },
   onboarding: {
     user: createRoute(),
@@ -20,6 +21,10 @@ export const routesMap: UnmappedRouteObject<object>[] = [
   {
     path: "/auth/sign-in",
     route: routes.auth.signIn,
+  },
+  {
+    path: "/auth/finish",
+    route: routes.auth.finished,
   },
   {
     path: "/onboarding/user",
