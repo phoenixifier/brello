@@ -1,9 +1,9 @@
 import React from "react";
 import { useUnit } from "effector-react";
-import { backToLogin } from "@/pages/auth/sign-in/model.ts";
+import { tryAgainClicked } from "@/pages/auth/finish/model.ts";
 
 const LoginFailed: React.FC = () => {
-  const handleBackToLogin = useUnit(backToLogin);
+  const handleTryAgain = useUnit(tryAgainClicked);
   return (
     <div className="flex flex-col gap-3">
       <span className="flex">
@@ -20,7 +20,7 @@ const LoginFailed: React.FC = () => {
       </p>
       <button
         className="flex items-center gap-2 pt-5 font-semibold text-gray-600"
-        onClick={() => handleBackToLogin()}
+        onClick={() => handleTryAgain()}
       >
         <img src="/arrow-left.svg" alt="arrow" />
         <p>Try again</p>
