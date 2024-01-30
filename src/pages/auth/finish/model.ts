@@ -9,4 +9,4 @@ const getMeFx = attach({ effect: api.auth.getMeFx });
 export const tryAgainClicked = createEvent();
 
 export const $pending = getMeFx.pending;
-export const $success = createStore(true);
+export const $success = createStore(false);
