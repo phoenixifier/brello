@@ -15,8 +15,8 @@ const LoginFailed: React.FC = () => {
       </span>
       <h1 className="pt-3 text-4xl font-bold">Sign In Failed</h1>
       <p className="text-gray-600">
-        We encountered an issue validating your sign-in. Please ensure the link
-        hasn't expired or been used before.
+        We encountered an issue validating your sign-in. <br /> Please ensure
+        the link hasn't expired or been used before.
       </p>
       <button
         className="flex items-center gap-2 pt-5 font-semibold text-gray-600"
