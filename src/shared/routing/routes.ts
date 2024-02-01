@@ -8,6 +8,7 @@ export const routes = {
   },
   onboarding: {
     user: createRoute(),
+    workspace: createRoute(),
   },
 };
 
@@ -29,5 +30,9 @@ export const routesMap: UnmappedRouteObject<object>[] = [
   {
     path: "/onboarding/user",
     route: routes.onboarding.user,
+  },
+  {
+    path: "/onboarding/workspace",
+    route: routes.onboarding.workspace,
   },
 ];
