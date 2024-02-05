@@ -1,20 +1,7 @@
 import { client } from "@/shared/api/client";
 import { AuthError } from "@supabase/supabase-js";
 import { createEffect } from "effector";
-
-export type Email = string;
-export type UserId = Uuid;
-
-export interface User {
-  id: UserId;
-  email: Email;
-}
-
-const checkError = (error: AuthError | null) => {
-  if (error) {
-    throw error;
-  }
-};
+import { checkError, Email, User } from "@/shared/api/rest/common.ts";
 
 export const signInWithEmailFx = createEffect<
   { email: Email },
