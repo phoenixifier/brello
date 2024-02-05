@@ -1,4 +1,11 @@
-import { attach, createEvent, createStore, sample, Event } from "effector";
+import {
+  attach,
+  createEvent,
+  createStore,
+  sample,
+  Event,
+  Effect,
+} from "effector";
 import { api } from "@/shared/api";
 import { User } from "@/shared/api/rest/auth.ts";
 import {
@@ -9,14 +16,14 @@ import {
 } from "atomic-router";
 
 enum ViewerStatus {
-  Initial,
+  Initial = 0,
   Pending,
   Authenticated,
   Anonymous,
 }
 
 interface ChainParams {
-  otherwise?: Event<void>;
+  otherwise?: Event<void> | Effect<void, any, any>;
 }
 
 export const viewerGetFx = attach({ effect: api.auth.getMeFx });
@@ -32,7 +39,15 @@ $viewerStatus.on(viewerGetFx.doneData, (_, user) => {
   if (user) return ViewerStatus.Authenticated;
   return ViewerStatus.Anonymous;
 });
-$viewerStatus.on(viewerGetFx.fail, () => ViewerStatus.Anonymous);
+$viewerStatus.on(viewerGetFx.failData, (status, error) => {
+  if (error.status === 401 || error.status === 403) {
+    return ViewerStatus.Anonymous;
+  }
+  if (status === ViewerStatus.Pending) {
+    return ViewerStatus.Anonymous;
+  }
+  return status;
+});
 
 export function chainAuthenticated<Params extends RouteParams>(
   route: RouteInstance<Params>,
@@ -63,7 +78,6 @@ export function chainAuthenticated<Params extends RouteParams>(
    * 7. chain route is already opened, but viewer status changed
    **/
 
-  /* 1 */
   sample({
     clock: authenticationCheckStarted,
     source: $viewerStatus,
@@ -72,21 +86,25 @@ export function chainAuthenticated<Params extends RouteParams>(
   });
 
   sample({
-    clock: [authenticationCheckStarted, viewerGetFx.doneData],
+    clock: [authenticationCheckStarted, viewerGetFx.done],
     source: $viewerStatus,
     filter: (status) => status === ViewerStatus.Authenticated,
     target: userAuthenticated,
   });
 
   sample({
-    clock: [authenticationCheckStarted, viewerGetFx.doneData],
+    clock: [authenticationCheckStarted, viewerGetFx.done, viewerGetFx.fail],
     source: $viewerStatus,
     filter: (status) => status === ViewerStatus.Anonymous,
     target: userAnonymous,
   });
 
   if (otherwise) {
-    sample({ clock: userAnonymous, target: otherwise });
+    sample({
+      clock: userAnonymous,
+      filter: route.$isOpened,
+      target: otherwise as Event<void>,
+    });
   }
 
   return chainRoute({
@@ -94,5 +112,54 @@ export function chainAuthenticated<Params extends RouteParams>(
     beforeOpen: authenticationCheckStarted,
     openOn: [userAuthenticated],
     cancelOn: [userAnonymous],
+  });
+}
+
+export function chainAnonymous<Params extends RouteParams>(
+  route: RouteInstance<Params>,
+  { otherwise }: ChainParams = {},
+): RouteInstance<Params> {
+  const authenticationCheckStarted = createEvent<RouteParamsAndQuery<Params>>();
+  const userAuthenticated = createEvent();
+  const userAnonymous = createEvent();
+
+  sample({
+    clock: authenticationCheckStarted,
+    source: $viewerStatus,
+    filter: (status) => status === ViewerStatus.Initial,
+    target: viewerGetFx,
+  });
+
+  sample({
+    clock: [authenticationCheckStarted, viewerGetFx.done],
+    source: $viewerStatus,
+    filter: (status) => status === ViewerStatus.Authenticated,
+    target: userAuthenticated,
+  });
+
+  sample({
+    clock: [
+      authenticationCheckStarted,
+      viewerGetFx.doneData,
+      viewerGetFx.failData,
+    ],
+    source: $viewerStatus,
+    filter: (status) => status === ViewerStatus.Anonymous,
+    target: userAnonymous,
+  });
+
+  if (otherwise) {
+    sample({
+      clock: userAuthenticated,
+      filter: route.$isOpened,
+      target: otherwise as Event<void>,
+    });
+  }
+
+  return chainRoute({
+    route,
+    beforeOpen: authenticationCheckStarted,
+    openOn: [userAnonymous],
+    cancelOn: [userAuthenticated],
   });
 }

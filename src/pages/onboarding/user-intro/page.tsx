@@ -1,9 +1,16 @@
-import React from "react";
 import Input from "@/shared/ui/input";
 import Button from "@/shared/ui/button";
 import OnboardingLayout from "@/shared/ui/onboarding/OnboardingLayout.tsx";
 
-const UserIntroPage: React.FC = () => {
+export const UserIntroLoader = () => {
+  return (
+    <div className="flex min-h-screen items-center justify-center">
+      Loading page...
+    </div>
+  );
+};
+
+const UserIntroPage = () => {
   return (
     <OnboardingLayout
       background="/background-pattern.svg"

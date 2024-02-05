@@ -3,7 +3,7 @@ import { useScreenSize } from "@/shared/screen-context";
 import LoginHeader from "@/shared/ui/login/LoginHeader";
 import LoginFooter from "@/shared/ui/login/LoginFooter";
 
-const LoginLayout: React.FC<{ children: React.ReactElement }> = ({
+const LoginLayout: React.FC<{ children: string | React.ReactElement }> = ({
   children,
 }) => {
   const screen = useScreenSize();
