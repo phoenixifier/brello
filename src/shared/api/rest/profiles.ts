@@ -61,7 +61,6 @@ export const profileGetFx = createEffect<
   if (data === null) {
     return null;
   }
-
   const { email, profiles } = data[0];
 
   return {
