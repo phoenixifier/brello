@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "atomic-router-react";
-import { routes } from "@/shared/routing/routes.ts";
+import { useUnit } from "effector-react";
+import { skipClicked } from "@/pages/onboarding/user-intro/model.ts";
 
 const OnboardingLayout: React.FC<{
   background?: string;
@@ -10,6 +11,7 @@ const OnboardingLayout: React.FC<{
   hasLink?: boolean;
   children: React.ReactNode;
 }> = ({ background, icon, title, subtitle, hasLink, children }) => {
+  const handleSkip = useUnit(skipClicked);
   return (
     <div>
       <img
@@ -25,7 +27,7 @@ const OnboardingLayout: React.FC<{
             <div className="flex flex-col items-start gap-1 md:flex-row">
               <p className="text-[#475467]">{subtitle}</p>
               {hasLink ? (
-                <Link to={routes.home} className="text-[#004EEB]">
+                <Link to={handleSkip("")} className="text-[#004EEB]">
                   Skip
                 </Link>
               ) : null}

@@ -7,7 +7,7 @@ import {
   Effect,
 } from "effector";
 import { api } from "@/shared/api";
-import { User } from "@/shared/api/rest/auth.ts";
+import { User } from "@/shared/api/rest/common.ts";
 import {
   chainRoute,
   RouteInstance,

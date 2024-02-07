@@ -5,13 +5,15 @@ const Button: React.FC<{
   children?: React.ReactNode;
   loading?: boolean;
   disabled?: boolean;
+  type?: "submit";
   onClick?: () => void;
-}> = ({ className, children, loading, disabled, onClick }) => {
+}> = ({ className, children, loading, disabled, type, onClick }) => {
   const baseStyle = "flex justify-center rounded-lg px-4 py-2.5 font-semibold";
   const combinedStyle = `${baseStyle} ${className}`;
 
   return (
     <button
+      type={type}
       className={combinedStyle}
       disabled={loading ?? disabled}
       aria-disabled={loading ?? disabled}

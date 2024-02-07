@@ -45,7 +45,11 @@ const Login: React.FC = () => {
         />
       </div>
       <div className="flex w-full flex-col gap-2">
-        <Button className="bg-[#620093] text-white" loading={pending}>
+        <Button
+          className="bg-[#620093] text-white"
+          type="submit"
+          loading={pending}
+        >
           Get started
         </Button>
         <Button className="gap-2 border border-gray-300">
